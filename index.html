@@ -233,7 +233,7 @@
     .hero-media-grid .video-container {
       width: 100%;
       max-width: none;
-      margin-bottom: 12px;
+      margin-bottom: 9px;
       border-radius: 14px;
       box-shadow: 0 16px 38px rgba(0,0,0,0.36);
     }
@@ -567,8 +567,8 @@
     }
 
     .nano-feature {
-      margin: 0 20px 28px;
-      padding: 20px;
+      margin: 0 20px 24px;
+      padding: 16px;
       border: 1px solid rgba(192, 132, 252, 0.22);
       border-radius: 16px;
       background: radial-gradient(circle at top, rgba(168,85,247,0.09), rgba(255,255,255,0.018) 48%, rgba(255,255,255,0.01) 100%);
@@ -577,7 +577,13 @@
 
     .nano-feature .img-container {
       width: 100%;
-      margin-bottom: 20px;
+      aspect-ratio: 16 / 6;
+      margin-bottom: 16px;
+    }
+
+    /* Keep the lower part of the Nano demo visible so on-video labels are not cropped. */
+    .nano-feature .img-container video {
+      object-position: center 84%;
     }
 
     .nano-feature-heading {
@@ -604,8 +610,8 @@
     }
 
     .nano-requirement-note {
-      margin-top: 16px !important;
-      padding: 13px 16px;
+      margin-top: 12px !important;
+      padding: 11px 14px;
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 10px;
       background: rgba(0,0,0,0.22);
@@ -1847,17 +1853,19 @@
     .engine-logo-strip {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-      padding: 0 20px;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 10px;
+      padding: 0;
       margin: -10px 0 24px;
+      width: 100%;
     }
 
     .engine-logo-pill {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      padding: 12px 16px;
+      padding: 10px 13px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.10);
       background: linear-gradient(135deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.02) 100%);
@@ -1877,6 +1885,41 @@
       font-size: 0.84rem;
       font-weight: 600;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+
+    .engine-logo-placeholder {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 7px;
+      border: 1px dashed rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.04);
+      color: #d4d4d8;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .engine-logo-pill .engine-coming-soon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: -2px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.05);
+      border: 1px solid rgba(56, 189, 248, 0.14);
+      color: rgba(186, 230, 253, 0.68);
+      font-size: 0.52rem;
+      font-weight: 550;
+      line-height: 1.08;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       white-space: nowrap;
     }
@@ -1930,6 +1973,10 @@
     }
 
     @media (max-width: 650px) {
+
+      .engine-logo-strip {
+        flex-wrap: wrap;
+      }
 
       .partner-banner {
         grid-template-columns: 1fr;
@@ -2187,11 +2234,11 @@
 
     <div class="sale-banner reveal active">
       <div class="sale-banner-inner">
-        <span class="sale-banner-kicker">Limited Launch Offer</span>
-        <div class="sale-banner-headline">25% Off During the Launch Period</div>
-        <p class="sale-banner-subline">Save 25% on ScatterFlow Pro during the launch period.</p>
+        <span class="sale-banner-kicker">New Update Celebration</span>
+        <div class="sale-banner-headline">Introducing ScatterFlow Nano</div>
+        <p class="sale-banner-subline">Celebrate the launch of ScatterFlow Nano with 25% off ScatterFlow Pro for a limited time.</p>
         <div class="sale-banner-offers">
-          <span class="sale-banner-offer-pill">25% OFF LAUNCH PERIOD</span>
+          <span class="sale-banner-offer-pill">25% OFF • NANO UPDATE SALE</span>
         </div>
       </div>
     </div>
@@ -2609,10 +2656,9 @@
           </video>
         </div>
         <div class="nano-feature-heading">
-          <h3>Upgrade Dense Environments with ScatterFlow Nano</h3>
-          <span class="badge beta">Beta</span>
+          <h3>Take Dense Environments Further with Nano</h3>
         </div>
-        <p>Nano is a Nanite-like technology built for extremely dense environments, letting you scatter millions of high-poly assets while keeping viewport slowdown to a minimum.</p>
+        <p>Designed for large, detailed environments, Nano lets you scatter millions of high-poly assets while minimizing viewport slowdown, even in the most demanding scenes.</p>
         <p class="nano-requirement-note"><strong style="color: #c4c4ca; font-weight: 600;">Requires:</strong> the included custom Blender build and the ScatterFlow Pro addon to function.</p>
       </div>
 
@@ -2914,7 +2960,7 @@
           <h2 style="margin: 0;">Export Sync</h2>
           <span class="badge beta" style="flex-shrink: 0;">Beta</span>
         </div>
-        <p style="margin-top: 18px;">Ever wanted to build in Blender and take your scene with you? Take your ScatterFlow environments beyond Blender and continue building in Unreal Engine, Unity, or Godot.</p>
+        <p style="margin-top: 18px;">Take your environments beyond Blender. Seamlessly bring your ScatterFlow scenes into Unreal Engine, or Godot and keep building.</p>
 
       <div class="engine-logo-strip">
         <div class="engine-logo-pill">
@@ -2924,6 +2970,11 @@
         <div class="engine-logo-pill">
           <img src="data:image/png;base64,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" alt="Godot logo" class="engine-logo-mark">
           <span>Godot</span>
+        </div>
+        <div class="engine-logo-pill">
+          <img src="./assets\White Geometric Cube Emblem 1.png" alt="Unity logo" class="engine-logo-mark" loading="lazy">
+          <span>Unity</span>
+          <span class="engine-coming-soon">Coming Soon</span>
         </div>
       </div>
       </div>
@@ -2950,7 +3001,7 @@
               loading="lazy">
           </div>
           <h3>Custom UI</h3>
-          <p>Enable a custom UI in your game engine so you can continue working with your scatter system just like you were in Blender.</p>
+          <p>Use a familiar ScatterFlow-style UI inside your game engine.</p>
         </div>
 
         <div class="feature-card">
@@ -2963,11 +3014,11 @@
               autoplay
               playsinline
               preload="none"
-              aria-label="Included Walkable Controls video">
+              aria-label="Included Controllable Characters video">
             </video>
           </div>
-          <h3>Included Walkable Controls</h3>
-          <p>Step into your environment and experience it at true scale. Use the included walkable controls to explore your scene directly in Blender or your game engine and get a real sense of scale, spacing, and composition before you move on.</p>
+          <h3>Included Controllable Characters</h3>
+          <p>Explore your environments at true scale with included controllable characters.</p>
         </div>
       </div>
     </div>
