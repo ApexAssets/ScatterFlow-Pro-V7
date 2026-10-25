@@ -2572,6 +2572,17 @@ body.sync2-connected .sync2 {margin-top:0;}
 .intro-play:focus-visible {outline:3px solid white;outline-offset:-4px;}
 
 .feature-carousel-track > .feature-card[hidden] {display:none!important;}
+/* Two equal offers: 25% for everyone, 40% (gold) for owners of other scatter add-ons. */
+.sale-banner-inner.sale-dual {grid-template-columns:1fr 1fr;gap:24px 0;}
+.sale-dual .sale-dual-kicker {grid-column:1/-1;margin-bottom:0;text-align:center;}
+.sale-dual .sale-editorial-offer {padding:0 24px;}
+.sale-dual .sale-editorial-offer:first-of-type {border-left:0;}
+.sale-discount-gold {background-image:linear-gradient(110deg,#ffd27a 0%,#ffd27a 42%,#fff6dc 50%,#ffd27a 58%,#ffd27a 100%);animation-delay:1.6s;}
+.sale-switch .sale-off-label {color:#ffe3a3;}
+.sale-switch-note {margin:12px auto 0;max-width:280px;color:#b9b9b9;font-size:.8rem;line-height:1.5;}
+.sale-switch-note strong {color:#fff;font-weight:600;}
+@media(max-width:650px){.sale-banner-inner.sale-dual{grid-template-columns:1fr 1fr;}.sale-dual .sale-editorial-offer{padding:0 10px;}.sale-switch-note{font-size:.7rem;}}
+@media(prefers-reduced-motion:reduce){.sale-discount-gold{-webkit-text-fill-color:#ffd27a;}}
 /* Brighter base: lift the page background and the darkest surfaces (cards stay a step lighter than the page). */
 :root {--bg-color:#0e1011;--bg-accent:#0e1011;}
 .main-canvas {border-left-color:#222427;border-right-color:#222427;}
@@ -2591,9 +2602,10 @@ body.sync2-connected .sync2 {margin-top:0;}
 
 
     <div class="sale-banner reveal active" id="launch-sale">
-      <div class="sale-banner-inner sale-editorial">
-        <div class="sale-editorial-copy"><span class="sale-banner-kicker">THE NANO RELEASE</span><div class="sale-banner-headline">More power.<br>Less to pay.</div><p class="sale-banner-subline">Celebrate the update with ScatterFlow Pro.</p></div>
+      <div class="sale-banner-inner sale-editorial sale-dual">
+        <span class="sale-banner-kicker sale-dual-kicker">THE NANO RELEASE</span>
         <div class="sale-editorial-offer"><div class="sale-discount">25<span>%</span></div><span class="sale-off-label">OFF SCATTERFLOW PRO</span><span class="sale-duration">Limited-time launch offer</span></div>
+        <div class="sale-editorial-offer sale-switch"><div class="sale-discount sale-discount-gold">40<span>%</span></div><span class="sale-off-label">OFF FOR OTHER SCATTER ADD-ON OWNERS</span><p class="sale-switch-note">Already own GeoScatter, Botaniq or another scatter add-on? <strong>Contact me for a discount code.</strong></p></div>
       </div>
     </div>
 
