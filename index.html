@@ -2583,6 +2583,16 @@ body.sync2-connected .sync2 {margin-top:0;}
 .sale-switch-note strong {color:#fff;font-weight:600;}
 @media(max-width:650px){.sale-banner-inner.sale-dual{grid-template-columns:1fr 1fr;}.sale-dual .sale-editorial-offer{padding:0 10px;}.sale-switch-note{font-size:.7rem;}}
 @media(prefers-reduced-motion:reduce){.sale-discount-gold{-webkit-text-fill-color:#ffd27a;}}
+/* Countdown for the 40% add-on owner offer, inside its column. */
+.sale-timer {display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:16px;}
+.sale-timer-label {color:#ffe3a3;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;}
+.sale-timer-units {display:flex;align-items:flex-start;gap:6px;}
+.sale-timer-units span {display:flex;flex-direction:column;align-items:center;min-width:48px;padding:7px 5px 5px;background:#ffd27a12;border:1px solid #ffd27a40;border-radius:7px;}
+.sale-timer-units b {color:#fff;font-size:1.3rem;font-weight:750;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+.sale-timer-units small {margin-top:4px;color:#a89a7c;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;}
+.sale-timer-units i {padding-top:5px;color:#8a7a5a;font-style:normal;font-size:1.1rem;font-weight:700;}
+.sale-timer.is-ended .sale-timer-units {display:none;}
+@media(max-width:650px){.sale-timer-units{gap:3px;}.sale-timer-units span{min-width:38px;padding:6px 3px 4px;}.sale-timer-units b{font-size:1.05rem;}.sale-timer-units small{font-size:.45rem;letter-spacing:.06em;}.sale-timer-units i{font-size:.9rem;padding-top:4px;}}
 /* Brighter base: lift the page background and the darkest surfaces (cards stay a step lighter than the page). */
 :root {--bg-color:#0e1011;--bg-accent:#0e1011;}
 .main-canvas {border-left-color:#222427;border-right-color:#222427;}
@@ -2605,7 +2615,7 @@ body.sync2-connected .sync2 {margin-top:0;}
       <div class="sale-banner-inner sale-editorial sale-dual">
         <span class="sale-banner-kicker sale-dual-kicker">THE NANO RELEASE</span>
         <div class="sale-editorial-offer"><div class="sale-discount">25<span>%</span></div><span class="sale-off-label">OFF SCATTERFLOW PRO</span><span class="sale-duration">Limited-time launch offer</span></div>
-        <div class="sale-editorial-offer sale-switch"><div class="sale-discount sale-discount-gold">40<span>%</span></div><span class="sale-off-label">OFF FOR OTHER SCATTER ADD-ON OWNERS</span><p class="sale-switch-note">Already own GeoScatter, Botaniq or another scatter add-on? <strong>Contact me for a discount code.</strong></p></div>
+        <div class="sale-editorial-offer sale-switch"><div class="sale-discount sale-discount-gold">40<span>%</span></div><span class="sale-off-label">OFF FOR OTHER SCATTER ADD-ON OWNERS</span><p class="sale-switch-note">Already own GeoScatter, Botaniq or another scatter add-on? <strong>Contact me for a discount code.</strong></p><div class="sale-timer" data-ends="2026-10-26T18:30:00-05:00"><span class="sale-timer-label">Offer ends in</span><div class="sale-timer-units" role="timer"><span><b data-unit="h">24</b><small>Hours</small></span><i aria-hidden="true">:</i><span><b data-unit="m">00</b><small>Min</small></span><i aria-hidden="true">:</i><span><b data-unit="s">00</b><small>Sec</small></span></div></div></div>
       </div>
     </div>
 
@@ -4273,5 +4283,27 @@ document.querySelectorAll('.intro-play').forEach(button => {
   iframe.focus();
  });
 });
+</script><script>
+// Sale countdown to a fixed deadline (same moment for every visitor).
+(() => {
+  const timer = document.querySelector('.sale-timer');
+  if (!timer) return;
+  const ends = new Date(timer.dataset.ends).getTime();
+  const parts = {h: timer.querySelector('[data-unit="h"]'), m: timer.querySelector('[data-unit="m"]'), s: timer.querySelector('[data-unit="s"]')};
+  const pad = (n) => String(n).padStart(2, '0');
+  const tick = () => {
+    const left = Math.max(0, Math.floor((ends - Date.now()) / 1000));
+    parts.h.textContent = pad(Math.floor(left / 3600));
+    parts.m.textContent = pad(Math.floor(left / 60) % 60);
+    parts.s.textContent = pad(left % 60);
+    if (left === 0) {
+      timer.classList.add('is-ended');
+      timer.querySelector('.sale-timer-label').textContent = 'This offer has ended';
+      clearInterval(interval);
+    }
+  };
+  const interval = setInterval(tick, 1000);
+  tick();
+})();
 </script></body>
 </html>
